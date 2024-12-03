@@ -1,4 +1,4 @@
-package vn.nguyenquan.laptopshop.service;
+package vn.hoidanit.laptopshop.service;
 
 import org.springframework.stereotype.Service;
 
@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 public class UserSevice {
 
     public String handleHello() {
-        return "quan.html";
+        return "hello";
     }
 }
