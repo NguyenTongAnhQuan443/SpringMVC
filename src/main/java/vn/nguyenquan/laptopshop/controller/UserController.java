@@ -10,7 +10,7 @@ import vn.nguyenquan.laptopshop.service.UserSevice;
 
 import org.springframework.web.bind.annotation.GetMapping;
 
-@RestController
+@Controller
 public class UserController {
 
     private UserSevice userSevice;
@@ -19,7 +19,7 @@ public class UserController {
         this.userSevice = userSevice;
     }
 
-    @GetMapping("")
+    @RequestMapping("/")
     public String getHomePage() {
         return this.userSevice.handleHello();
     }

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 public class UserSevice {
 
     public String handleHello() {
-        return "Hello form service";
+        return "quan.html";
     }
 }
