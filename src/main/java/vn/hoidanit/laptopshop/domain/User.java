@@ -6,6 +6,7 @@ public class User {
     private String password;
     private String address;
     private String phone;
+    private String fullName;
 
     public long getId() {
         return id;
@@ -47,13 +48,30 @@ public class User {
         this.phone = phone;
     }
 
-    public User() {
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public User(long id, String email, String password, String address, String phone, String fullName) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.phone = phone;
+        this.fullName = fullName;
     }
 
     @Override
     public String toString() {
         return "User [id=" + id + ", email=" + email + ", password=" + password + ", address=" + address + ", phone="
-                + phone + "]";
+                + phone + ", fullName=" + fullName + "]";
+    }
+
+    public User() {
     }
 
 }
