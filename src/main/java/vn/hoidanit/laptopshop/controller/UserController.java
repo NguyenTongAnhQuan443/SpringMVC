@@ -27,4 +27,10 @@ public class UserController {
         model.addAttribute("nguyenquan", "Nguyen Quan XIN CHAO");
         return "hello";
     }
+
+    @RequestMapping("/admin/user")
+    public String getAdminPage() {
+        return "admin/user/create";
+    }
+
 }
