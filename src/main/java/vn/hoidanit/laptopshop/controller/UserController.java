@@ -4,19 +4,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import vn.hoidanit.laptopshop.domain.User;
+import vn.hoidanit.laptopshop.repository.UserRepository;
 import vn.hoidanit.laptopshop.service.UserSevice;
 
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 public class UserController {
 
-    private UserSevice userSevice;
+    private final UserSevice userSevice;
 
     public UserController(UserSevice userSevice) {
         this.userSevice = userSevice;
@@ -24,8 +22,7 @@ public class UserController {
 
     @RequestMapping("/")
     public String getHomePage(Model model) {
-        String test = this.userSevice.handleHello();
-        model.addAttribute("eric", test);
+        model.addAttribute("eric", "test");
         model.addAttribute("nguyenquan", "Nguyen Quan XIN CHAO");
         return "hello";
     }
@@ -38,7 +35,7 @@ public class UserController {
 
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
     public String createUserPage(Model model, @ModelAttribute("newUser") User user) {
-        System.out.println("run hehe" + user);
+        this.userSevice.handleSaveUser(user);
         return "hello";
     }
 
