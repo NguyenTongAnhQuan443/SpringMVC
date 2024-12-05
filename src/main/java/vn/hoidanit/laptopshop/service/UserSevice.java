@@ -39,4 +39,9 @@ public class UserSevice {
     public User getUserById(long id) {
         return this.userRepository.findById(id);
     }
+
+    // Delete
+    public void deleteAUser(long id) {
+        this.userRepository.deleteById(id);
+    }
 }
