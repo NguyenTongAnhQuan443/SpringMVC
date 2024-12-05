@@ -12,6 +12,7 @@ import vn.hoidanit.laptopshop.repository.UserRepository;
 import vn.hoidanit.laptopshop.service.UserSevice;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
@@ -24,22 +25,28 @@ public class UserController {
 
     @RequestMapping("/")
     public String getHomePage(Model model) {
-        List<User> arrUsers = this.userSevice.getAllUserByEmail("admin@gmail.com");
-        System.out.println(arrUsers);
         model.addAttribute("nguyenquan", "Nguyen Quan XIN CHAO");
         return "hello";
     }
 
-    @RequestMapping(value = "/admin/user", method = RequestMethod.GET)
-    public String getUserPage(Model model) {
+    // Lấy trang Create GET
+    @RequestMapping(value = "/admin/user/create", method = RequestMethod.GET)
+    public String getCreateUserPages(Model model) {
         model.addAttribute("newUser", new User());
         return "admin/user/create";
     }
 
+    // Lấy trang Create POST
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
     public String createUserPage(Model model, @ModelAttribute("newUser") User user) {
         this.userSevice.handleSaveUser(user);
-        return "hello";
+        return "admin/user/create";
+    }
+
+    // Lấy List User
+    @RequestMapping(value = "/admin/user", method = RequestMethod.GET)
+    public String getUserPage(Model model) {
+        return "admin/user/table-user";
     }
 
 }
