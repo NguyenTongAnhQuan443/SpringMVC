@@ -25,7 +25,7 @@ public class UserSevice {
         return this.userRepository.save(user);
     }
 
-    // FindAll
+    // Find All
     public List<User> getAllUser() {
         return this.userRepository.findAll();
     }
@@ -33,5 +33,10 @@ public class UserSevice {
     // Get All User By Email
     public List<User> getAllUserByEmail(String email) {
         return this.userRepository.findByEmail(email);
+    }
+
+    // Find By ID
+    public User getUserById(long id) {
+        return this.userRepository.findById(id);
     }
 }
