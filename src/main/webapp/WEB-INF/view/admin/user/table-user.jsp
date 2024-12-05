@@ -6,7 +6,7 @@
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Nguyen Quan</title>
+                <title>List User</title>
 
                 <!-- Latest compiled and minified CSS -->
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -38,16 +38,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>
-                                            <button class="btn btn-success">View</button>
-                                            <button class="btn btn-warning mx-2">Update</button>
-                                            <button class="btn btn-danger">Delete</button>
-                                        </td>
-                                    </tr>
+                                    <c:forEach var="user" items="${users}">
+                                        <tr>
+                                            <th>${user.id}</th>
+                                            <th>${user.email}</th>
+                                            <th>${user.fullName}</th>
+                                            <td>
+                                                <a class="btn btn-success" href="/admin/user/${user.id}">View</a>
+                                                <a class="btn btn-warning mx-2" href="/admin/user/${user.id}">Update</a>
+                                                <a class="btn btn-danger" href="/admin/user/${user.id}">Delete</a>
+                                            </td>
+                                        </tr>
+
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>
