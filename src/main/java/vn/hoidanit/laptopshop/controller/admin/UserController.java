@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import vn.hoidanit.laptopshop.domain.User;
+import vn.hoidanit.laptopshop.service.UploadService;
 import vn.hoidanit.laptopshop.service.UserSevice;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,11 +30,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class UserController {
 
     private final UserSevice userSevice;
-    private final ServletContext servletContext;
+    private final UploadService uploadService;
 
-    public UserController(UserSevice userSevice, ServletContext servletContext) {
+    public UserController(UserSevice userSevice, UploadService uploadService) {
         this.userSevice = userSevice;
-        this.servletContext = servletContext;
+        this.uploadService = uploadService;
     }
 
     @GetMapping("/")
@@ -54,26 +55,8 @@ public class UserController {
             @ModelAttribute("newUser") User user,
             @RequestParam("NguyenQuanFile") MultipartFile file) {
 
-        byte[] bytes;
-        try {
-            bytes = file.getBytes();
-
-            String rootPath = this.servletContext.getRealPath("/resources/images");
-            File dir = new File(rootPath + File.separator + "avatar");
-            if (!dir.exists())
-                dir.mkdirs();
-            // Create the file on server
-            File serverFile = new File(dir.getAbsolutePath() + File.separator +
-                    +System.currentTimeMillis() + "-" + file.getOriginalFilename());
-            BufferedOutputStream stream = new BufferedOutputStream(
-                    new FileOutputStream(serverFile));
-            stream.write(bytes);
-            stream.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        this.userSevice.handleSaveUser(user);
+        String avatar = this.uploadService.handleSaveUploadFile(file, "avatar"); // avatar là tên thư mục lưu file
+        // this.userSevice.handleSaveUser(user);
         return "redirect:/admin/user"; // redirect đến link url
     }
 
