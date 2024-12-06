@@ -17,14 +17,14 @@
         </head>
 
         <body>
-            <h1>Hello JSP</h1>
+            <!-- <h1>Hello JSP</h1>
             <h2>
                 ${eric}
             </h2>
             <h2>
                 ${nguyenquan}
             </h2>
-            <button class="btn btn-success">Submit</button>
+            <button class="btn btn-success">Submit</button> -->
         </body>
 
         </html>
