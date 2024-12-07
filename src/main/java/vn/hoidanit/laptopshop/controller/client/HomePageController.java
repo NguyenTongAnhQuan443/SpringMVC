@@ -1,4 +1,4 @@
-package vn.hoidanit.laptopshop.controller.admin.client;
+package vn.hoidanit.laptopshop.controller.client;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +9,7 @@ public class HomePageController {
 
     @GetMapping("/")
     public String getHomePage() {
-        return "client/homepage/show";
+        return "/client/homepage/show";
     }
 
 }
