@@ -1,4 +1,4 @@
-package vn.hoidanit.laptopshop.domain;
+package vn.nguyenquan.laptopshop.domain;
 
 import java.util.Set;
 

@@ -1,20 +1,22 @@
-package vn.hoidanit.laptopshop.controller.admin;
+package vn.nguyenquan.laptopshop.controller.admin;
 
 import java.util.List;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
-import vn.hoidanit.laptopshop.domain.User;
-import vn.hoidanit.laptopshop.service.RoleService;
-import vn.hoidanit.laptopshop.service.UploadService;
-import vn.hoidanit.laptopshop.service.UserSevice;
-
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import jakarta.validation.Valid;
+import vn.nguyenquan.laptopshop.domain.User;
+import vn.nguyenquan.laptopshop.service.RoleService;
+import vn.nguyenquan.laptopshop.service.UploadService;
+import vn.nguyenquan.laptopshop.service.UserSevice;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,9 +46,16 @@ public class UserController {
 
     @PostMapping("/admin/user/create")
     public String createUserPage(Model model,
-            @ModelAttribute("newUser") User user,
+            @ModelAttribute("newUser") @Valid User user,
+            BindingResult bindingResult,
             @RequestParam("NguyenQuanFile") MultipartFile file) {
 
+        // Validate
+        List<FieldError> errors = bindingResult.getFieldErrors();
+        for (FieldError error : errors) {
+            System.out.println("NGUYEN QUAN" + error.getObjectName() + " - " + error.getDefaultMessage());
+        }
+        //
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar"); // avatar là tên thư mục lưu file
         String hashPassword = this.passwordEncoder.encode(user.getPassword());
 

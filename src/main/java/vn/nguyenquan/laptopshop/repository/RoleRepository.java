@@ -1,9 +1,9 @@
-package vn.hoidanit.laptopshop.repository;
+package vn.nguyenquan.laptopshop.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import vn.hoidanit.laptopshop.domain.Role;
+import vn.nguyenquan.laptopshop.domain.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {

@@ -1,9 +1,9 @@
-package vn.hoidanit.laptopshop.service;
+package vn.nguyenquan.laptopshop.service;
 
 import org.springframework.stereotype.Service;
 
-import vn.hoidanit.laptopshop.domain.Role;
-import vn.hoidanit.laptopshop.repository.RoleRepository;
+import vn.nguyenquan.laptopshop.domain.Role;
+import vn.nguyenquan.laptopshop.repository.RoleRepository;
 
 @Service
 public class RoleService {
