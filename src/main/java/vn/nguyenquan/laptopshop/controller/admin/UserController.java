@@ -47,13 +47,17 @@ public class UserController {
     @PostMapping("/admin/user/create")
     public String createUserPage(Model model,
             @ModelAttribute("newUser") @Valid User user,
-            BindingResult bindingResult,
+            BindingResult newUserBindingResult,
             @RequestParam("NguyenQuanFile") MultipartFile file) {
 
         // Validate
-        List<FieldError> errors = bindingResult.getFieldErrors();
+        List<FieldError> errors = newUserBindingResult.getFieldErrors();
         for (FieldError error : errors) {
-            System.out.println("NGUYEN QUAN" + error.getObjectName() + " - " + error.getDefaultMessage());
+            System.out.println(error.getField() + " - " + error.getDefaultMessage());
+        }
+
+        if (newUserBindingResult.hasErrors()) {
+            return "/admin/user/create";
         }
         //
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar"); // avatar là tên thư mục lưu file
