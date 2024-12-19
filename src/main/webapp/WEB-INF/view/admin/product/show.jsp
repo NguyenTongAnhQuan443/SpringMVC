@@ -30,7 +30,40 @@
                                 <li class="breadcrumb-item active">Dashboard</li>
                             </ol>
                             <!-- Content -->
-                            <h1>Product</h1>
+                            <div class="d-flex justify-content-between">
+                                <h3>Table Product</h3>
+                                <a href="/admin/product/create" class="btn btn-primary">Create product</a>
+                            </div>
+                            <hr />
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Factory</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="user" items="${users}">
+                                        <tr>
+                                            <th>${product.id}</th>
+                                            <th>${product.name}</th>
+                                            <th>${product.price}</th>
+                                            <th>${product.factory}</th>
+                                            <td>
+                                                <a class="btn btn-success" href="/admin/product/${product.id}">View</a>
+                                                <a class="btn btn-warning mx-2"
+                                                    href="/admin/product/update/${product.id}">Update</a>
+                                                <a class="btn btn-danger"
+                                                    href="/admin/product/delete/${product.id}">Delete</a>
+                                            </td>
+                                        </tr>
+
+                                    </c:forEach>
+                                </tbody>
+                            </table>
                             <!-- Content -->
                         </div>
                     </main>
@@ -41,7 +74,7 @@
             </div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
                 crossorigin="anonymous"></script>
-            <script src="js/scripts.js"></script>
+            <script src="/js/scripts.js"></script>
         </body>
 
         </html>

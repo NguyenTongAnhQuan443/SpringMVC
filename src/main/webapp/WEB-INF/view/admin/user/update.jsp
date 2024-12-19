@@ -45,7 +45,8 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Email Address</label>
-                                                <form:input type="email" class="form-control" path="email" disabled="true" />
+                                                <form:input type="email" class="form-control" path="email"
+                                                    disabled="true" />
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Phone</label>
@@ -74,7 +75,7 @@
                 </div>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
                     crossorigin="anonymous"></script>
-                <script src="js/scripts.js"></script>
+                <script src="/js/scripts.js"></script>
             </body>
 
             </html>

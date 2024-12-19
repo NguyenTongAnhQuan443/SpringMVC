@@ -35,12 +35,6 @@ public class UserController {
         this.roleService = roleService;
     }
 
-    // @GetMapping("/")
-    // public String getHomePage(Model model) {
-    // model.addAttribute("nguyenquan", "Nguyen Quan XIN CHAO");
-    // return "hello";
-    // }
-
     // Create
     @GetMapping("/admin/user/create")
     public String getCreateUserPages(Model model) {
