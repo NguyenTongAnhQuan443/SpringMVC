@@ -5,14 +5,14 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import vn.nguyenquan.laptopshop.domain.User;
-import vn.nguyenquan.laptopshop.repository.UserRepository;
+import vn.nguyenquan.laptopshop.repository.IUserRepository;
 
 @Service
 public class UserSevice {
 
-    private UserRepository userRepository;
+    private IUserRepository userRepository;
 
-    public UserSevice(UserRepository userRepository) {
+    public UserSevice(IUserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

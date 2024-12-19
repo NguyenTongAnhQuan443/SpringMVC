@@ -9,7 +9,7 @@ import vn.nguyenquan.laptopshop.domain.User;
 import java.util.List;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface IUserRepository extends JpaRepository<User, Long> {
     User save(User user);
 
     List<User> findByEmail(String email);

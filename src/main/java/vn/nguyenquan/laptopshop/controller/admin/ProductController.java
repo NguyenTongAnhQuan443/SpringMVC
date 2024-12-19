@@ -4,12 +4,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import vn.nguyenquan.laptopshop.domain.Product;
+import java.util.List;
 import vn.nguyenquan.laptopshop.domain.Product;
 
 @Controller
 public class ProductController {
 
+    // Get List Product
     @GetMapping("/admin/product")
     public String getProductPage(Model model) {
         return "/admin/product/show";
