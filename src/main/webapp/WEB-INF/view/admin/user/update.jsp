@@ -43,23 +43,53 @@
                                                 <label class="form-label">ID: </label>
                                                 <form:input type="text" class="form-control" path="id" />
                                             </div>
+
                                             <div class="mb-3">
                                                 <label class="form-label">Email Address</label>
                                                 <form:input type="email" class="form-control" path="email"
                                                     disabled="true" />
+
                                             </div>
+
                                             <div class="mb-3">
+                                                <!-- validate -->
+                                                <c:set var="errorPhone">
+                                                    <form:errors path="phone" cssClass="invalid-feedback" />
+                                                </c:set>
+
                                                 <label class="form-label">Phone</label>
-                                                <form:input type="text" class="form-control" path="phone" />
+                                                <form:input type="text"
+                                                    class="form-control ${not empty errorPhone ? 'is-invalid' : ''}"
+                                                    path="phone" />
+                                                ${errorPhone}
                                             </div>
+
                                             <div class="mb-3">
+                                                <!-- validate -->
+                                                <c:set var="errorName">
+                                                    <form:errors path="fullName" cssClass="invalid-feedback" />
+                                                </c:set>
+
                                                 <label class="form-label">Full Name</label>
-                                                <form:input type="text" class="form-control" path="fullName" />
+                                                <form:input type="text"
+                                                    class="form-control ${not empty errorName ? 'is-invalid' : ''}"
+                                                    path="fullName" />
+                                                ${errorName}
                                             </div>
+
                                             <div class="mb-3">
+                                                <!-- validate -->
+                                                <c:set var="errorAddress">
+                                                    <form:errors path="address" cssClass="invalid-feedback" />
+                                                </c:set>
+
                                                 <label class="form-label">Address</label>
-                                                <form:input type="text" class="form-control" path="address" />
+                                                <form:input type="text"
+                                                    class="form-control ${not empty errorAddress ? 'is-invalid' : ''}"
+                                                    path="address" />
+                                                ${errorAddress}
                                             </div>
+
                                             <button type="submit" class="btn btn-success">Submit</button>
                                             <a href="/admin/user" class="btn btn-primary">Back</a>
                                         </form:form>
