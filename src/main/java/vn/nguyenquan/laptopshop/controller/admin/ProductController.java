@@ -79,6 +79,7 @@ public class ProductController {
         model.addAttribute("newProduct", product);
 
         return "/admin/product/delete";
+
     }
 
     @PostMapping("/admin/product/delete")
