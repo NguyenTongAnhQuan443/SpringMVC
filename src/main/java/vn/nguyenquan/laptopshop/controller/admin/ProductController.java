@@ -88,4 +88,12 @@ public class ProductController {
         return "redirect:/admin/product";
     }
 
+    // Detail
+    @GetMapping("/admin/product/{id}")
+    public String getProductDetailsPage(Model model, @PathVariable long id) {
+        Product product = this.productService.getProductById(id);
+        model.addAttribute(product);
+        return "/admin/product/detail";
+    }
+
 }
