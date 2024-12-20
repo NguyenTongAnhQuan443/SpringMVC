@@ -16,6 +16,8 @@ import vn.nguyenquan.laptopshop.service.ProductService;
 import vn.nguyenquan.laptopshop.service.UploadService;
 
 import java.util.List;
+import java.util.Optional;
+
 import vn.nguyenquan.laptopshop.domain.Product;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,6 +31,14 @@ public class ProductController {
     public ProductController(UploadService uploadService, ProductService productService) {
         this.uploadService = uploadService;
         this.productService = productService;
+    }
+
+    // Detail
+    @GetMapping("/admin/product/{id}")
+    public String getProductDetailsPage(Model model, @PathVariable long id) {
+        Product product = this.productService.getProductById2(id).get();
+        model.addAttribute("product", product);
+        return "/admin/product/detail";
     }
 
     // Get List Product
@@ -87,12 +97,43 @@ public class ProductController {
         return "redirect:/admin/product";
     }
 
-    // Detail
-    @GetMapping("/admin/product/{id}")
-    public String getProductDetailsPage(Model model, @PathVariable long id) {
-        Product product = this.productService.getProductById2(id).get();
-        model.addAttribute(product);
-        return "/admin/product/detail";
+    // Update
+    @GetMapping("/admin/product/update/{id}")
+    public String getUpdateProductPage(Model model, @PathVariable long id) {
+
+        Optional<Product> curentProduct = this.productService.getProductById2(id);
+        model.addAttribute("newProduct", curentProduct.get());
+        model.addAttribute("id", id);
+        return "/admin/product/update";
+    }
+
+    @PostMapping("/admin/product/update")
+    public String postUpdateProductPage(Model model, @ModelAttribute("newProduct") @Valid Product product,
+            BindingResult updateProductBindingResult, @RequestParam("NguyenQuanFile") MultipartFile file) {
+
+        // Validate
+        if (updateProductBindingResult.hasErrors()) {
+            return "/admin/product/update";
+        }
+        //
+
+        Product currentProduct = this.productService.getProductById2(product.getId()).get();
+
+        if (!file.isEmpty()) {
+            String img = this.uploadService.handleSaveUploadFile(file, "product");
+            currentProduct.setImage(img);
+        }
+
+        currentProduct.setName(product.getName());
+        currentProduct.setPrice(product.getPrice());
+        currentProduct.setQuantity(product.getQuantity());
+        currentProduct.setDetailDesc(product.getDetailDesc());
+        currentProduct.setShortDesc(product.getShortDesc());
+        currentProduct.setFactory(product.getFactory());
+        currentProduct.setTarget(product.getTarget());
+
+        this.productService.handleSaveProduct(currentProduct);
+        return "redirect:/admin/product";
     }
 
 }
