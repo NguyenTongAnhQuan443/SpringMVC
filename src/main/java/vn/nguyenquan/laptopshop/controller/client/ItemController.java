@@ -6,12 +6,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import vn.nguyenquan.laptopshop.domain.Product;
+import vn.nguyenquan.laptopshop.service.ProductService;
+
 @Controller
 public class ItemController {
+    private final ProductService productService;
+
+    public ItemController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping("/product/{id}")
     public String getProductPage(Model model, @PathVariable long id) {
-        return "/client/product/detail";
+        Product pr = this.productService.getProductById2(id).get();
+        model.addAttribute("product", pr);
+        model.addAttribute("id", id);
+        return "client/product/detail";
     }
 
 }
