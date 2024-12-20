@@ -1,5 +1,6 @@
 package vn.nguyenquan.laptopshop.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +25,7 @@ public class Product {
     private String image;
 
     @Size(min = 1, message = "Chi tiết sản phẩm không được rỗng")
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String detailDesc;
 
     @Size(min = 1, message = "Mô tả ngắn gọn không được rỗng")
