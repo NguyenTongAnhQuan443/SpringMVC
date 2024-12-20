@@ -6,6 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -38,7 +39,7 @@ public class ProductController {
         return "/admin/product/show";
     }
 
-    // create
+    // Create
     @GetMapping("/admin/product/create")
     public String getCreateProductPage(Model model) {
         model.addAttribute("newProduct", new Product());
@@ -60,12 +61,30 @@ public class ProductController {
         }
         //
 
-        String avatar = this.uploadService.handleSaveUploadFile(file, "avatar"); // avatar là tên thư mục lưu file
+        String avatar = this.uploadService.handleSaveUploadFile(file, "product"); // avatar là tên thư mục lưu file
 
         product.setImage(avatar);
 
         this.productService.handleSaveProduct(product);
         return "redirect:/admin/product"; // redirect đến link url
+    }
+
+    // Delete
+    @GetMapping("/admin/product/delete/{id}")
+    public String getDeleteProductPage(Model model, @PathVariable long id) {
+        model.addAttribute("id", id);
+
+        Product product = new Product();
+        product.setId(id);
+        model.addAttribute("newProduct", product);
+
+        return "/admin/product/delete";
+    }
+
+    @PostMapping("/admin/product/delete")
+    public String postDeleteProduct(Model model, @ModelAttribute("newProduct") Product product) {
+        this.productService.deleteProductById(product.getId());
+        return "redirect:/admin/product";
     }
 
 }
