@@ -45,22 +45,35 @@
                                             <hr />
                                             <form:form method="post" action="/admin/product/create"
                                                 modelAttribute="newProduct" class="row" enctype="multipart/form-data">
+
                                                 <div class="mb-3 col-12 col-md-6">
+                                                    class="mb-3 col-12 col-md-6">
+                                                    <!-- validate -->
+                                                    <c:set var="errorName">
+                                                        <form:errors path="name" cssClass="invalid-feedback" />
+                                                    </c:set>
+
                                                     <label class="form-label">Name:</label>
-                                                    <form:input type="text" class="form-control" path="name" />
+                                                    <form:input type="text"
+                                                        class="form-control ${not empty errorName ? 'is-invalid' : ''}"
+                                                        path="name" />
                                                 </div>
+
                                                 <div class="mb-3 col-12 col-md-6">
                                                     <label class="form-label">Price:</label>
                                                     <form:input type="text" class="form-control" path="price" />
                                                 </div>
+
                                                 <div class="mb-3 col-12 col-md-6">
                                                     <label class="form-label">Detailed Description:</label>
                                                     <form:input type="text" class="form-control" path="detailDesc" />
                                                 </div>
+
                                                 <div class="mb-3 col-12 col-md-6">
                                                     <label class="form-label">Short Sescription:</label>
                                                     <form:input type="text" class="form-control" path="shortDesc" />
                                                 </div>
+
                                                 <div class="mb-3 col-12">
                                                     <label class="form-label">Quantity:</label>
                                                     <form:input type="text" class="form-control" path="quantity" />
@@ -96,10 +109,12 @@
                                                     <input class="form-control" type="file" id="avatarFile"
                                                         accept=".png, .jpg, .jpeg" name="NguyenQuanFile" />
                                                 </div>
+
                                                 <div class="col-12 mb-3">
                                                     <img style="max-height: 250px; display: none;" alt="avatar preview"
                                                         id="avatarPreview" />
                                                 </div>
+
                                                 <div class="col-12 mb-5">
                                                     <button type="submit" class="btn btn-primary">Create</button>
                                                 </div>
