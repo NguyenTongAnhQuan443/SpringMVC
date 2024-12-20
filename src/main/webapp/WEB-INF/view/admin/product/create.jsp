@@ -10,7 +10,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                 <meta name="description" content="Nguyễn Quân - Dự án laptopshop" />
                 <meta name="author" content="Nguyễn Quân" />
-                <title>Create User - Nguyễn Quân</title>
+                <title>Create Product - Nguyễn Quân</title>
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
                 <script>
@@ -47,7 +47,6 @@
                                                 modelAttribute="newProduct" class="row" enctype="multipart/form-data">
 
                                                 <div class="mb-3 col-12 col-md-6">
-                                                    class="mb-3 col-12 col-md-6">
                                                     <!-- validate -->
                                                     <c:set var="errorName">
                                                         <form:errors path="name" cssClass="invalid-feedback" />
@@ -57,26 +56,59 @@
                                                     <form:input type="text"
                                                         class="form-control ${not empty errorName ? 'is-invalid' : ''}"
                                                         path="name" />
+                                                    ${errorName}
                                                 </div>
 
                                                 <div class="mb-3 col-12 col-md-6">
+                                                    <!-- validate -->
+                                                    <c:set var="errorPrice">
+                                                        <form:errors path="price" cssClass="invalid-feedback" />
+                                                    </c:set>
+
                                                     <label class="form-label">Price:</label>
-                                                    <form:input type="text" class="form-control" path="price" />
+                                                    <form:input type="text"
+                                                        class="form-control ${not empty errorPrice ? 'is-invalid' : ''}"
+                                                        path="price" />
+                                                    ${errorPrice}
                                                 </div>
 
                                                 <div class="mb-3 col-12 col-md-6">
+                                                    <!-- validate -->
+                                                    <c:set var="errorDetailDesc">
+                                                        <form:errors path="detailDesc" cssClass="invalid-feedback" />
+                                                    </c:set>
+
                                                     <label class="form-label">Detailed Description:</label>
-                                                    <form:input type="text" class="form-control" path="detailDesc" />
+                                                    <form:input type="text"
+                                                        class="form-control ${not empty errorDetailDesc ? 'is-invalid' : ''}"
+                                                        path="detailDesc" />
+                                                    ${errorDetailDesc}
                                                 </div>
 
                                                 <div class="mb-3 col-12 col-md-6">
+                                                    <!-- validate -->
+                                                    <c:set var="errorShortDesc">
+                                                        <form:errors path="shortDesc" cssClass="invalid-feedback" />
+                                                    </c:set>
+
                                                     <label class="form-label">Short Sescription:</label>
-                                                    <form:input type="text" class="form-control" path="shortDesc" />
+                                                    <form:input type="text"
+                                                        class="form-control ${not empty errorShortDesc ? 'is-invalid' : ''}"
+                                                        path="shortDesc" />
+                                                    ${errorShortDesc}
                                                 </div>
 
                                                 <div class="mb-3 col-12">
+                                                    <!-- validate -->
+                                                    <c:set var="errorQuantity">
+                                                        <form:errors path="quantity" cssClass="invalid-feedback" />
+                                                    </c:set>
+
                                                     <label class="form-label">Quantity:</label>
-                                                    <form:input type="text" class="form-control" path="quantity" />
+                                                    <form:input type="text"
+                                                        class="form-control ${not empty errorQuantity ? 'is-invalid' : ''}"
+                                                        path="quantity" />
+                                                    ${errorQuantity}
                                                 </div>
 
                                                 <div class="mb-3 col-12 col-md-6">
@@ -118,6 +150,7 @@
                                                 <div class="col-12 mb-5">
                                                     <button type="submit" class="btn btn-primary">Create</button>
                                                 </div>
+
                                             </form:form>
 
                                         </div>

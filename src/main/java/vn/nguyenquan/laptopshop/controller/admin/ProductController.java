@@ -16,6 +16,8 @@ import vn.nguyenquan.laptopshop.service.UploadService;
 
 import java.util.List;
 import vn.nguyenquan.laptopshop.domain.Product;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class ProductController {
@@ -38,30 +40,31 @@ public class ProductController {
 
     // create
     @GetMapping("/admin/product/create")
-    public String createProductPage(Model model,
-            @ModelAttribute("newProduct") @Valid Product product,
-            BindingResult newProductBindingResult,
-            @RequestParam("NguyenQuanFile") MultipartFile file) {
+    public String getCreateProductPage(Model model) {
+        model.addAttribute("newProduct", new Product());
+        return "/admin/product/create";
+    }
+
+    @PostMapping("/admin/product/create")
+    public String createProductPage(Model model, @ModelAttribute("newProduct") @Valid Product product,
+            BindingResult newProducBindingResult, @RequestParam("NguyenQuanFile") MultipartFile file) {
 
         // Validate
-        List<FieldError> errors = newProductBindingResult.getFieldErrors();
+        List<FieldError> errors = newProducBindingResult.getFieldErrors();
         for (FieldError error : errors) {
             System.out.println(error.getField() + " - " + error.getDefaultMessage());
         }
 
-        if (newProductBindingResult.hasErrors()) {
+        if (newProducBindingResult.hasErrors()) {
             return "/admin/product/create";
         }
         //
 
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar"); // avatar là tên thư mục lưu file
 
-        // product.setImage(avatar);
-        // product.setName(avatar);
-        // user.setPassword(hashPassword);
-        // user.setRole(this.roleService.getRoleByName(user.getRole().getName()));
+        product.setImage(avatar);
 
-        // this.productService.handleSaveProduct(product);
+        this.productService.handleSaveProduct(product);
         return "redirect:/admin/product"; // redirect đến link url
     }
 
