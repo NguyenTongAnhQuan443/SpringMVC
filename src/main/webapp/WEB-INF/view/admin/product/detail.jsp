@@ -40,10 +40,14 @@
                                             <h3>Product Detail whith ID: ${product.id}</h3>
                                         </div>
                                         <hr />
-                                        <div class="card">
+                                        <div class="card" style="width: 60%">
                                             <div class="card-header">
                                                 Product Infomation
                                             </div>
+
+                                            <img src="/images/product/${product.image}" alt="Card image cap"
+                                                class="card-img-top">
+
                                             <ul class="list-group list-group-flush">
                                                 <li class="list-group-item">ID: ${product.id}</li>
                                                 <li class="list-group-item">Name: ${product.name}</li>

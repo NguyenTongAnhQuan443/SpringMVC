@@ -79,7 +79,6 @@ public class ProductController {
         model.addAttribute("newProduct", product);
 
         return "/admin/product/delete";
-
     }
 
     @PostMapping("/admin/product/delete")
@@ -91,7 +90,7 @@ public class ProductController {
     // Detail
     @GetMapping("/admin/product/{id}")
     public String getProductDetailsPage(Model model, @PathVariable long id) {
-        Product product = this.productService.getProductById(id);
+        Product product = this.productService.getProductById2(id).get();
         model.addAttribute(product);
         return "/admin/product/detail";
     }

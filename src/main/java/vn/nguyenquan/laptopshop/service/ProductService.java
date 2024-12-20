@@ -1,11 +1,12 @@
 package vn.nguyenquan.laptopshop.service;
 
 import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import vn.nguyenquan.laptopshop.domain.Product;
 import vn.nguyenquan.laptopshop.repository.IProductRepository;
+
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -26,8 +27,13 @@ public class ProductService {
         return this.productRepository.findAll();
     }
 
-    // Find By Email
-    public Product getProductById(long id) {
+    // Find By ID
+    // public Product getProductById(long id) {
+    // return this.productRepository.findById(id);
+    // }
+
+    // Find Product By ID 2
+    public Optional<Product> getProductById2(long id) {
         return this.productRepository.findById(id);
     }
 
