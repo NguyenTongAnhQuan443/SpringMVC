@@ -1,14 +1,18 @@
 package vn.nguyenquan.laptopshop.controller.client;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.validation.Valid;
 import vn.nguyenquan.laptopshop.domain.Product;
 import vn.nguyenquan.laptopshop.domain.User;
 import vn.nguyenquan.laptopshop.domain.dto.RegisterDTO;
@@ -47,7 +51,14 @@ public class HomePageController {
     }
 
     @PostMapping("/register")
-    public String handleRegister(@ModelAttribute("registerUser") RegisterDTO registerDTO) {
+    public String handleRegister(@ModelAttribute("registerUser") @Valid RegisterDTO registerDTO,
+            BindingResult bindingResult) {
+        // validate
+        List<FieldError> errors = bindingResult.getFieldErrors();
+        for (FieldError error : errors) {
+            System.out.println("LOII => " + error.getField() + "-" + error.getDefaultMessage());
+        }
+        //
         User user = this.userSevice.registerDTOtoUser(registerDTO);
 
         String hashPassword = this.passwordEncoder.encode(user.getPassword());
